@@ -335,6 +335,16 @@ class TestNbConvertApp(TestsBase):
             with assert_raises(OSError):
                 self.nbconvert('--execute --to markdown --stdout notebook3*.ipynb')
 
+    def test_errors_print_traceback(self):
+        """
+        Verify that conversion is aborted with '--execute' if an error is
+        encountered and that the error output contains the traceback of the cell execution exception.
+        """
+        with self.create_temp_cwd(['notebook3_with_errors.ipynb']):
+            _, error_output = self.nbconvert('--execute --to markdown --stdout notebook3_with_errors.ipynb',
+                                             ignore_return_code=True)
+            self.assertIn('This is a deliberate exception', error_output)
+
     def test_fenced_code_blocks_markdown(self):
         """
         Verify that input cells use fenced code blocks with the language
