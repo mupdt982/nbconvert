@@ -187,7 +187,7 @@ class TestExecute(PreprocessorTestsBase):
         with assert_raises(CellExecutionError) as exc:
             self.run_notebook(filename, dict(allow_errors=False), res)
         self.assertIsInstance(str(exc.exception), str)
-        assert_in(u"# üñîçø∂é".encode('utf8', 'replace'), str(exc.exception))
+        assert_in(u"# üñîçø∂é".encode('utf8', 'replace').decode("utf-8"), str(exc.exception).decode("utf-8"))
         assert_in(u"# üñîçø∂é", unicode(exc.exception))
 
     def test_custom_kernel_manager(self):
