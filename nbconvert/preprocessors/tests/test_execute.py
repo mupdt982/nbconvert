@@ -186,8 +186,8 @@ class TestExecute(PreprocessorTestsBase):
         res['metadata']['path'] = os.path.dirname(filename)
         with assert_raises(CellExecutionError) as exc:
             self.run_notebook(filename, dict(allow_errors=False), res)
-        self.assertIsInstance(str(exc), str)
-        assert_in(u"üñîçø∂é", str(exc))
+        self.assertIsInstance(str(exc.exception), str)
+        assert_in(u"üñîçø∂é", str(exc.exception))
 
     def test_custom_kernel_manager(self):
         from .fake_kernelmanager import FakeCustomKernelManager
