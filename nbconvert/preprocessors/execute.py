@@ -31,6 +31,9 @@ class CellExecutionError(ConversionException):
         super(CellExecutionError, self).__init__(traceback)
         self.traceback = traceback
 
+    def __str__(self):
+        return unicode(self).encode('utf-8', 'replace')
+
 
 class ExecutePreprocessor(Preprocessor):
     """
