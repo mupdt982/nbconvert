@@ -32,7 +32,10 @@ class CellExecutionError(ConversionException):
         self.traceback = traceback
 
     def __str__(self):
-        return unicode(self)
+        s = self.__unicode__()
+        if not isinstance(s, str):
+            s = s.encode('utf8', 'replace')
+        return s
 
     def __unicode__(self):
         return self.traceback
