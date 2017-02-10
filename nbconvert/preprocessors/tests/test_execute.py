@@ -189,7 +189,7 @@ class TestExecute(PreprocessorTestsBase):
         self.assertIsInstance(str(exc.exception), str)
         # assert_in(u"# üñîçø∂é".encode('utf8', 'replace'), str(exc.exception).decode("utf-8"))
         # assert_in(u"# üñîçø∂é", str(exc.exception))
-        print(str(exc.exception))
+        raise Exception(str(exc.exception))
 
     def test_custom_kernel_manager(self):
         from .fake_kernelmanager import FakeCustomKernelManager
